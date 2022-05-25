@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- assets holds CSS file and its needs(bg, fonts and favicon), while images is used only for images. -->
+
+<!-- a lot of this head is about how favicon should be perceived on different devices-->
+<!-- the DIV that will contain the widget -->
+
+<head>
+	<meta charset="utf-8">
+    <meta name = "viewport" content="initial-scale = 1.0, width = device-width, maximum-scale = 1.0" >
+    <meta name = "description" content="In scale of the surrounding World, life is the most ephemeral thing, join us for this little trip">
+
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+    <link rel="icon" id="small-img" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+
+    <!-- bootstrap assets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/main.css">
+	<title> style it. @ EPHEMERE.WEB  </title>
+	<script>
+	function getCookie(name) {
+	var setPos = document.cookie.indexOf(name + '='), stopPos = document.cookie.indexOf(';', setPos);
+	return !~setPos ? null : document.cookie.substring(
+	setPos, ~stopPos ? stopPos : undefined).split('=')[1];
+	}
+
+	function setCookie(name, val, days, path) {
+	var cookie = name + "=" +  escape(val) + "";
+	if (days) {
+	var date = new Date();
+	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	cookie += ";expires=" + date.toGMTString();
+	}
+	cookie += ";" + (path || "path=/");
+	console.log(cookie);
+	document.cookie = cookie;
+	}
+
+	var username = getCookie("username");
+	if (!username) {
+	setCookie("username", prompt("please enter your name:"), 365);
+	} else {
+	alert("welcome again " + username);
+	}
+	</script> 
+
+</head>
+
+<body>
+	<script src="jquery-2.2.4.min.js"></script>
+	<script src="jquery.zoom.min.js"> </script>
+	<script src="main.js" ></script>
+
+	<%- include('partials/navbar', {active: "#"}); %>
+
+	<section class="about">
+		
+		<div class = "container">
+			<div>
+				<a class="nav-link active" aria-current="page" href="/auth/users"> Admin Form </a>
+			</div>
+
+		<div class="container">
+			<span>Lorem ipsum dolor sit amet, </span>
+			<span>consectetur adipiscing elit. Morbi</span>
+			<span>sed varius ante. Nulla sed mollis est.</span>
+
+
+
+
+
+		</div>
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed varius ante. Nulla sed mollis est. Aenean tempus orci a lectus venenatis, vel varius sem congue. Sed non neque ultricies, efficitur sem ac, viverra nunc. Aliquam eu dapibus nisi. Mauris egestas libero cursus, volutpat massa ac, eleifend nulla. Nullam elementum urna sed risus ullamcorper bibendum. Proin libero mauris, aliquet quis sapien in, feugiat vulputate metus. Maecenas neque lacus, tempus a turpis quis, fringilla sagittis massa. Phasellus scelerisque orci ut ligula hendrerit maximus.
+
+		<br>Quisque non tincidunt urna, sed dignissim mi. Vestibulum vitae rutrum est. Pellentesque euismod erat augue, vitae iaculis dolor bibendum sed. Suspendisse nec odio tempor velit consectetur consectetur. Fusce lobortis leo ut elit mattis, vitae ultricies ante sagittis. <abbr title="Very sad tho.">Sed </abbr>. </p>
+
+		<hr>
+		</div>
+
+	</section>
+
+	
+	
+	<section class="photo">
+		<div class="container">
+		
+		<div class="row">
+			<div class="col-4">
+				<img class=img-fluid src="images/milk.gif" alt="milk" class="milkgif">
+			</div>
+			<article class="box" id="stick">
+				<h3 class="active" id="click">Ways of Mental Health</h3>
+				<ol style="display:none;" id="hide"> 
+					<li> sleep at nighttime, no matter how much </li>
+					<li> hydrate yourself </li>
+					<li> manifest your social importance </li>
+					<li> manage your stress, but don't stop emotions pouring </li>
+				</ol>
+			</article>
+			<!--<div class="col-8">
+				<h2> Ways of Mental Health </h2>
+				<ol>
+					<li> sleep at nighttime, no matter how much </li>
+					<li> hydrate yourself </li>
+					<li> manifest your social importance </li>
+					<li> manage your stress, but don't stop emotions pouring </li>
+				</ol>
+				<p> Pellentesque rutrum mi sed pretium rutrum. Maecenas sit amet urna nisi. Curabitur fermentum lacus at lacus feugiat consequat. Praesent eu tristique est. Nunc interdum rutrum iaculis. Nulla venenatis risus lorem, vel euismod felis malesuada id. Cras placerat maximus lorem et porttitor. </p>
+				
+			</div>-->
+			
+			<div class="mentaladvices">
+				
+
+
+			</div>
+		</div>
+	</div>
+	
+	<hr>
+
+	<div class="container">
+		<div class="endloop">
+			<div class="col-12">
+				<div class="gif"> <img src="images/endloop.gif" alt="milk" class="endgif"> </div>
+			</div>
+			
+		</div>
+	</div>
+
+
+	</section>
+
+		
+	
+	<footer class="footer" id="footer">
+		<div class="container" id ="section-contacts">
+			
+			<article class="box" id="stick">
+				<h2 class="active" id="click">Creators contact</h2>
+				<div style="display:none;" id="hide"> 
+					<div class="col-5">Author: Aldyyarov Valikhan, Aulbekov Adilzhan, Yerassyl Pirzhanov, Baurzhan Eskozhanov
+					</div>
+					<object><a href="mailto:211021@astanait.edu.kz">email: 211021@astanait.edu.kz</a> <a href="mailto:211349@astanait.edu.kz">email: 211349@astanait.edu.kz</a> </object> 
+					<object>     tg:@jenecomprendepas, @Lomtik_zefira, @x0r19, @Gtrhfly </object>
+					<object class="last"> made by 2022y. </object>
+				</div>
+			</article>
+		</div>
+
+
+	</footer>
+	<div class="weatherWidget" ></div>
+
+	<script>
+		window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+		window.weatherWidgetConfig.push({
+			selector:".weatherWidget",
+			apiKey:"UX796V5NQLMB2DLMXSL9CNXT2", //Sign up for your personal key
+			location:"Kazakhstan, Nur-Sultan", //Enter an address
+			unitGroup:"metric", //"us" or "metric"
+			forecastDays:5, //how many days forecast to show
+			title: "Kazakhstan, Nur-Sultan", //optional title to show in the
+			showTitle:true,
+			showConditions:true
+		});
+
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+
+</body>
+
+</html>
