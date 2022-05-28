@@ -18,6 +18,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+function CheckPassword(input) {
+  let pass =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+  return !!input.match(pass);
+}
+
 router.get("/register", async (req, res) => {
   try {
     res.render("authentication/register");
@@ -26,34 +31,8 @@ router.get("/register", async (req, res) => {
     res.status(404).render("error/error", { status: "404" });
   }
 });
-router.post("/register", upload.single("image"), async (req, res) => {
-  try {
-    const userObj = new User({
-      username: req.body.username,
-      email: req.body.email,
-      role: req.body.role,
-    });
-    let file;
-    try {
-      file = path.join(__dirname,"/uploads/users/" + req.file.filename);
-      userObj.image = {
-        data:  fs.readFileSync(file),
-        contentType: "image/png",
-      };
-      
-    } catch (e) {
-      userObj.image = null;
-    }
 
-    await User.register(userObj, req.body.password);
 
-    req.flash("login", "User Registered Successfully, Login to Continue");
-    res.redirect("/login");
-  } catch (err) {
-    req.flash("register", err.message);
-    res.redirect("/register");
-  }
-});
 
 router.get(
   "/login",

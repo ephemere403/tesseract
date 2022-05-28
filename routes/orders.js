@@ -12,10 +12,6 @@ const Orders = require("../models/order");
 const currentUrl=require("../middlewares/currentUrl")
 require('dotenv').config();
 
-const instance = new Razorpay({
-  key_id: process.env.RZP_key_id,
-  key_secret: process.env.RZP_key_secret
-});
 router.post("/user/order",isLoggedIn, (req, res) => {
   try{
   let reciept = "ODRCPT_ID_" + uuid().slice(-12, -1);
@@ -40,23 +36,13 @@ router.post("/user/order",isLoggedIn, (req, res) => {
 router.post("/user/order/verify", isLoggedIn,async (req, res) => {
   console.log("Order Verify")
   try{
-
-    body = req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
-
-  const expectedSignature = crypto
-    .createHmac("sha256", process.env.RZP_key_secret)
-    .update(body.toString())
-    .digest("hex");
-
-  var response = { status: "failure" };
-  if (expectedSignature === req.body.razorpay_signature) {
     try {
       const userObj = await Users.findById(req.user._id);
       let amount=req.body.order.amount/100;
       const data = {
         user: req.user,
-        orderid: req.body.razorpay_order_id,
-        paymentid: req.body.razorpay_payment_id,
+        orderid: req.body.order_id,
+        paymentid: req.body.payment_id,
         orderList: userObj.cart,
         purchaseDate: Date.now(),
         finalPrice: amount,
@@ -74,7 +60,6 @@ router.post("/user/order/verify", isLoggedIn,async (req, res) => {
       console.log(e);
       
     }
-  }
   res.send(response);
   }
   catch(e){

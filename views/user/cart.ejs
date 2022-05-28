@@ -37,7 +37,7 @@
                     <div class="itemProd col d-flex align-items-center">
                         <div class="prodInfo p-2">
                             <h5 class="name"><%=item.item.name%></h5>
-                            <h6>Price : &#x20B9; <%=item.item.price%></h6>
+                            <h6>Price : &#x20B8; <%=item.item.price%></h6>
                             <h6>Quantity: <%=item.quantity%></h6>
                         </div>
                     </div>
@@ -69,11 +69,11 @@
                             let discount=Math.round(20/100*finalPrice);
                             let totalPrice=finalPrice-discount;
                             %>
-                            <li class="py-2 d-flex justify-content-between"><h6>Price<span>(<%=data.length%> <%=itemDisplay%>)</span></h6> <h6>&#x20B9; <%=finalPrice%></h6></li>
-                            <li class="py-2 d-flex justify-content-between"><h6>Discount</h6> <h6 class="text-success">- &#x20B9; <%=discount%></h6></li>
+                            <li class="py-2 d-flex justify-content-between"><h6>Price<span>(<%=data.length%> <%=itemDisplay%>)</span></h6> <h6>&#x20B8; <%=finalPrice%></h6></li>
+                            <li class="py-2 d-flex justify-content-between"><h6>Discount</h6> <h6 class="text-success">- &#x20B8; <%=discount%></h6></li>
                             <li class="py-2 d-flex justify-content-between"><h6>Delivery</h6> <h6 class='text-success'>FREE</h6></li>
                             <hr>
-                            <li class="d-flex justify-content-between"><h5>Total Price</h5> <h6>&#x20B9; <span id="finalPrice"><%=totalPrice%></span></h6></li>
+                            <li class="d-flex justify-content-between"><h5>Total Price</h5> <h6>&#x20B8; <span id="finalPrice"><%=totalPrice%></span></h6></li>
                         </ul>
                     </div>                
                 </div>
@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="finalBillButton d-grid gap-2 py-3">
-            <button type="button" class="btn btn-success btn-lg" id="rzp-checkout">PLACE ORDER</button>
+            <button type="button" class="btn btn-success btn-lg" id="checkout">PLACE ORDER</button>
             <div
             class="modal fade"
             id="paymentModal"
@@ -151,7 +151,6 @@
     </div>
     <%}%>
 </main>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script >
     const postOrder= async (url,data)=>{
           console.log("Entered in to fetch")
@@ -168,15 +167,12 @@
         var options = {
                     "key": order.rzp_key,
                     "amount": order.amount,
-                    "currency": "INR",
-                    "name": "APNA CART",
+                    "currency": "KZT",
+                    "name": "Cart of Products",
                     "description": "Test Transaction",
                     "order_id": order.id,
                     "image": "https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG38.png",
                     "handler": function (response){
-                        // alert(response.razorpay_payment_id);
-                        // alert(response.razorpay_order_id);
-                        // alert(response.razorpay_signature)
                         console.log(response);
                         console.log(response)
                         response.order=order;
@@ -193,12 +189,6 @@
                         "name": "<%=loginUser.username%>",
                         "email": "<%=loginUser.email%>",
                         
-                    },
-                    "notes": {
-                        "address": "Razorpay Corporate Office"
-                    },
-                    "theme": {
-                        "color": "#00BCD4"
                     }
                 };
                 var rzp1 = new Razorpay(options);
@@ -216,13 +206,13 @@
                 rzp1.open();
                
     }
-    document.getElementById("rzp-checkout").addEventListener("click",(e)=>{
+    document.getElementById("checkout").addEventListener("click",(e)=>{
           e.preventDefault();
           const amount=document.getElementById("finalPrice").innerText*100;
           console.log(amount);
           let data={
             amount:amount,
-            currency:"INR",
+            currency:"KZT",
           }
 
           postOrder("/user/order",data).then((order)=>{

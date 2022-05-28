@@ -18,6 +18,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
 mongoose
   .connect(process.env.MDB_CONNECT, {
     useNewUrlParser: true,
